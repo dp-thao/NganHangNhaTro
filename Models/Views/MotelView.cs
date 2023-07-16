@@ -1,10 +1,8 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NganHangNhaTro.Models
+namespace NganHangNhaTro.Models.Views
 {
-    [Table("motels")]
-    public partial class Motel
+    public class MotelView
     {
         [Key]
         public int id { get; set; }

@@ -11,6 +11,7 @@ builder.Services.AddDbContext<dbContext>(options =>
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IMotelRepository, MotelRepository>();
 
 var app = builder.Build();
 
