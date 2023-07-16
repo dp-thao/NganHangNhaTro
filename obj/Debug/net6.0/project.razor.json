@@ -18374,6 +18374,11 @@
   "RootNamespace": "NganHangNhaTro",
   "Documents": [
     {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Motel\\Create.cshtml",
+      "TargetPath": "Views\\Motel\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
@@ -18411,6 +18416,11 @@
     {
       "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Motel\\Index.cshtml",
+      "TargetPath": "Views\\Motel\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
