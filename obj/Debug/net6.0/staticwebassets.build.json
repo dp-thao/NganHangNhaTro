@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rh0PHkM1dLDc1Vx/mMujBZiRXw6EVWg2pScEcxaB3Eg=",
+  "Hash": "3KExff5sGKpdqMqTiytFoeHGtVIUB2LZP3nyhKO/vYk=",
   "Source": "NganHangNhaTro",
   "BasePath": "_content/NganHangNhaTro",
   "Mode": "Default",
@@ -30717,6 +30717,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\40b5e1a5-c3bc-4013-9624-e3fd191e56b9-VTI.jpg"
+    },
+    {
+      "Identity": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\images\\47cbae4f-e8cb-4d73-b8d9-9ab352ab0ac5-1.png",
+      "SourceId": "NganHangNhaTro",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\",
+      "BasePath": "_content/NganHangNhaTro",
+      "RelativePath": "images/47cbae4f-e8cb-4d73-b8d9-9ab352ab0ac5-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\47cbae4f-e8cb-4d73-b8d9-9ab352ab0ac5-1.png"
     },
     {
       "Identity": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\images\\558f035e-fde7-4250-83c6-57c886167efd-BHYT.jpg",
