@@ -17,22 +17,25 @@ namespace NganHangNhaTro.Controllers
         private string name = "motel";
         private IMotelRepository _motelRepository;
         private readonly IWebHostEnvironment _env;
+        private readonly IPhotoService _photoService;
 
-        public MotelController(IMotelRepository motelRepository, IWebHostEnvironment env)
+        public MotelController(IMotelRepository motelRepository, IWebHostEnvironment env, IPhotoService photoService)
         {
             _motelRepository = motelRepository;
+            _photoService = photoService;
             _env = env;
         }
 
         public IActionResult Index()
         {
-            List<Motel> motels = _motelRepository.GetMotelList();
+            int uid = int.Parse(HttpContext.Session.GetString("uid"));
+            List<Motel> motels = _motelRepository.getAllWithCreatedBy(uid);
             return View(motels);
         }
 
         public IActionResult Detail(int id)
         {
-            Motel motel = _motelRepository.GetMotelList().Where(m => m.id == id).FirstOrDefault(); ;
+            Motel motel = _motelRepository.show(id);
             return View(motel);
         }
 
@@ -42,51 +45,80 @@ namespace NganHangNhaTro.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(MotelView motel)
+        [AllowAnonymous]
+        public async Task<IActionResult> Create(MotelView motelView)
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    // Lưu ảnh vào thư mục
-                    string uploadPath = Path.Combine(_env.WebRootPath, "app-assets", "images", "data");
-                    string filePath = Path.Combine(uploadPath, motel.file.FileName);
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
-                    {
-                        motel.file.CopyTo(fileStream);
-                    }
-
-                    _motelRepository.NewMotel(motel);
-                    ViewBag.Alert = CommonServices.ShowAlert(Alerts.Success, "Motel added");
-                    return View("Create");
+                    ViewBag.ErrorMessage = "Có lỗi xảy ra, vui lòng thử lại";
+                    ViewBag.Alert = CommonServices.ShowAlert(Alerts.Danger, "Unknown error");
                 }
                 else
                 {
-                    ViewBag.Alert = CommonServices.ShowAlert(Alerts.Danger, "Unknown error");
-                    return View();
+                    // Lưu ảnh vào thư mục
+                    string imagePath = await _photoService.add(motelView.image);
+
+                    if (imagePath == "")
+                    {
+                        ViewBag.ErrorMessage = "Photo upload empty";
+                    }
+                    Motel motel = new Motel
+                    {
+                        title = motelView.title,
+                        description = motelView.description,
+                        detail = motelView.detail,
+                        address = motelView.address,
+                        price = motelView.price,
+                        image = imagePath,
+                        status = motelView.status,
+                        created_by = int.Parse(HttpContext.Session.GetString("uid")),
+                        created_at = DateTime.Now,
+                    };
+
+                    _motelRepository.add(motel);
+                    ViewBag.Alert = CommonServices.ShowAlert(Alerts.Success, "Motel added");
+
+                    return Ok(new
+                    {
+                        success = true,
+                        data = motel,
+                        errors = new List<dynamic>(),
+                    });
                 }
+                return View("Create");
+
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-                throw e;
+                ViewBag.ErrorMessage = e.Message;
+                return View("Create");
             }
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public IActionResult Update(int id)
         {
-            MotelView motel = _motelRepository.EditMotel(id);
+            Motel motel = _motelRepository.show(id);
             return View(motel);
         }
 
         [HttpPost]
-        public ActionResult EditMotel(MotelView motelEdit)
+        public async Task<IActionResult> Update(MotelView motelView)
         {
             if (ModelState.IsValid)
             {
-                _motelRepository.DeleteMotel(motelEdit.id);
-                _motelRepository.NewMotel(motelEdit);
+                Motel motel = new Motel
+                {
+                    title = motelView.title,
+                    description = motelView.description,
+                    detail = motelView.detail,
+                    address = motelView.address,
+                    price = motelView.price,
+                    status = motelView.status,
+                };
+                _motelRepository.save(motel);
                 return RedirectToAction("Index");
 
             }
@@ -95,7 +127,7 @@ namespace NganHangNhaTro.Controllers
 
         public IActionResult Delete(int id)
         {
-            _motelRepository.DeleteMotel(id);
+            _motelRepository.destroy(id);
             return RedirectToAction("Index");
         }
 

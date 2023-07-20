@@ -17,27 +17,37 @@ namespace NganHangNhaTro.Repositories
         }
 
         // Lấy toàn bộ danh sách phòng trọ
-        public List<Motel> GetMotelList()
+        public List<Motel> getAll()
         {
-            return _dbContext.Motel.ToList();
+            return _dbContext.Motel.Include(motel => motel.user).ToList();
+        }
+
+        public List<Motel> getAllWithCreatedBy(int created_by)
+        {
+            return _dbContext.Motel.Include(motel => motel.user).Where(motel => motel.created_by == created_by).ToList();
+        }
+
+
+        public Motel show(int id){
+            return _dbContext.Motel.Include(motel => motel.user).FirstOrDefault(motel => motel.id == id);
         }
 
         // Tạo mới một phòng trọ
-        public Motel NewMotel(MotelView motelView)
+        public Motel add(Motel motel)
         {
-            Motel motel = new Motel();
-            motel.title = motelView.title;
-            motel.description = motelView.description;
-            motel.address = motelView.address;
-            motel.price = motelView.price;
-            // Lấy đường dẫn của ảnh
-            motel.image = "/app-assets/images/data/" + motelView.file.FileName;
-            motel.detail = motelView.detail;
-            motel.created_by = motelView.created_by;
-            motel.priceElectronicWater = motelView.priceElectronicWater;
-            motel.acreage = motelView.acreage;
-            motel.status = motelView.status;
-            motel.post = motelView.post;
+            // Motel motel = new Motel();
+            // motel.title = motelView.title;
+            // motel.description = motelView.description;
+            // motel.address = motelView.address;
+            // motel.price = motelView.price;
+            // // Lấy đường dẫn của ảnh
+            // motel.image = "/app-assets/images/data/" + motelView.file.FileName;
+            // motel.detail = motelView.detail;
+            // motel.created_by = motelView.created_by;
+            // motel.priceElectronicWater = motelView.priceElectronicWater;
+            // motel.acreage = motelView.acreage;
+            // motel.status = motelView.status;
+            // motel.post = motelView.post;
             // Lưu thông tin motel
             _dbContext.Motel.Add(motel);
 
@@ -46,24 +56,38 @@ namespace NganHangNhaTro.Repositories
         }
 
         // Tìm thông tin phòng trọ theo id
-        public MotelView EditMotel(int id)
+        public Motel save(Motel motel)
         {
             // Tìm thông tin phòng trọ theo id từ client truyền vào
-            Motel motel = _dbContext.Motel.Find(id);
-            // Chuyển thông tin tìm được từ server lên client
-            MotelView motelView = new MotelView();
-            motelView.id = id;
-            motelView.title = motel.title;
-            motelView.description = motel.description;
-            motelView.address = motel.address;
-            motelView.price = motel.price;
-            motelView.detail = motel.detail;
-            motelView.image = motel.image;
-            return motelView;
+            Motel existingMotel = _dbContext.Motel.Find(motel.id);
+
+            if (existingMotel != null)
+            {
+                // Update the properties of the existing motel entity with the new values
+                existingMotel.id = motel.id;
+                existingMotel.title = motel.title;
+                existingMotel.description = motel.description;
+                existingMotel.detail = motel.detail;
+                existingMotel.address = motel.address;
+                existingMotel.price = motel.price;
+                existingMotel.image = motel.image;
+                existingMotel.status = motel.status;
+                existingMotel.created_by = motel.created_by;
+                existingMotel.created_at = motel.created_at;
+                // ... Update created_at properties as needed ...
+
+                // Save the changes to the database
+                _dbContext.SaveChanges();
+
+                // Return the updated motel entity
+                return existingMotel;
+            }
+
+            return null;
         }
 
         // Xóa phòng trọ
-        public void DeleteMotel(int id)
+        public void destroy(int id)
         {
             Motel motel = _dbContext.Motel.Find(id);
             _dbContext.Motel.Remove(motel);

@@ -17,10 +17,10 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         int pageSize = 10; // Số lượng mục hiển thị trên mỗi trang
-        int totalItems = _motelRepository.GetMotelList().Count; // Tổng số lượng mục
+        int totalItems = _motelRepository.getAll().Count; // Tổng số lượng mục
 
 
-        List<Motel> motels = _motelRepository.GetMotelList();
+        List<Motel> motels = _motelRepository.getAll();
         return View(motels);
     }
 

@@ -1,100 +1,64 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-
-@model Motel
-@{
+﻿@{
 	ViewData["Title"] = "Chi tiết phòng trọ";
 }
+@section Styles {
+	<link rel="stylesheet" type="text/css" href="~/app-assets/css/pages/app-ecommerce-details.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/forms/form-number-input.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/extensions/ext-component-toastr.css">
+}
+@model Motel
 
-<!-- Blog Detail -->
-<div class="blog-detail-wrapper">
-	<div class="row">
-		<!-- Blog -->
-		<div class="col-12">
-			<div class="card">
-				<!-- Ảnh -->
-				<div class="cart-wrap-img">
-					<img src="@Model.image" class="img-fluid card-img-top cart-img-motel" alt="Blog Detail Pic" />
-				</div>
-				<!-- Thông tin chi tiết -->
-				<div class="card-body">
-
-					<!-- Bordered table start -->
-					<div class="row" id="table-bordered">
-						<div class="col-12">
-							<div class="card">
-								<div class="table-responsive">
-									<table class="table table-bordered">
-										<tbody>
-											<tr>
-												<th>
-													<span class="fw-bold">Địa chỉ</span>
-												</th>
-												<td>@Model.address</td>
-												<th>
-													<span class="fw-bold">Chuyên mục</span>
-												</th>
-												<td>
-													<span class="badge rounded-pill badge-light-primary me-1">@Model.title</span>
-												</td>
-											</tr>
-											<tr>
-												<th>
-													<span class="fw-bold">Giá tiền</span>
-												</th>
-												<td>@Model.price</td>
-												<th>
-													<span class="fw-bold">Diện tích</span>
-												</th>
-												<td>@Model.acreage m2</td>
-											</tr>
-											<tr>
-												<th>
-													<span class="fw-bold">Giá điện nước</span>
-												</th>
-												<td>@Model.priceElectronicWater</td>
-												<th>
-													<span class="fw-bold">Điện thoại</span>
-												</th>
-												<td>0947441289</td>
-											</tr>
-											<tr>
-												<th>
-													<span class="fw-bold">Ngày đăng</span>
-												</th>
-												<td>@Model.post</td>
-												<th>
-													<span class="fw-bold">Trạng thái</span>
-												</th>
-												<td>
-													@if (Model.status == true)
-													{
-														<span class="badge rounded-pill badge-light-primary me-1">Còn phòng</span>
-													} else
-													{
-														<span class="badge rounded-pill badge-light-primary me-1">Hết phòng</span>
-													}
-
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
+<section class="app-ecommerce-details">
+	<div class="card">
+		<!-- Product Details starts -->
+		<div class="card-body">
+			<div class="row my-2">
+				<div class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+					<div class="d-flex align-items-center justify-content-center">
+						<img src="@Model.image" class="img-fluid product-img" alt="product image">
 					</div>
-					<!-- Bordered table end -->
-
-					<h4 class="card-title">Mô tả</h4>
-					<p class="card-text mb-2">
-						@Model.description
+				</div>
+				<div class="col-12 col-md-7">
+					<h4>@Model.title</h4>
+					<span class="card-text item-company">
+						<b>Người tạo:</b> <a href="#" class="company-name">@Model.user.username</a>
+					</span>
+					<div class="ecommerce-details-price d-flex flex-wrap mt-1">
+						<h4 class="item-price me-1">@Model.price VNĐ</h4>
+					</div>
+					<p class="card-text">
+						@if (Model.status == true)
+						{
+							<span class="badge rounded-pill badge-light-primary me-1">Còn phòng</span>
+						} else
+						{
+							<span class="badge rounded-pill badge-light-primary me-1">Hết phòng</span>
+						}
 					</p>
-
+					<p class="card-text">
+						@Model.detail
+					</p>
+					<hr>
+					<div class="d-flex flex-column flex-sm-row pt-1">
+						<a href="tel:@Model.user.phone_number" class="btn btn-primary btn-cart me-0 me-sm-1 mb-1 mb-sm-0 waves-effect waves-float waves-light">
+							<i data-feather='phone-call'></i>
+							<span>Liên hệ</span>
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!--/ Blog -->
+		<!-- Product Details ends -->
 	</div>
-</div>
-<!--/ Blog Detail -->
+</section>
+
+@section Scripts {
+	<script src="~/app-assets/js/scripts/pages/app-ecommerce-details.js"></script>
+    <script src="~/app-assets/js/scripts/forms/form-number-input.js"></script>
+	<script type="text/javascript">
+        $(document).ready(async function(){
+            addClassAppContent("ecommerce-application");
+			$("#content-wrapper").addClass("container-xxl p-0");
+        })
+    </script>
+}

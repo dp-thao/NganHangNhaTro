@@ -18372,6 +18372,92 @@
     "CSharpLanguageVersion": 1000
   },
   "RootNamespace": "NganHangNhaTro",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Motel\\Index.cshtml",
+      "TargetPath": "Views\\Motel\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Motel\\Edit.cshtml",
+      "TargetPath": "Views\\Motel\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Motel\\Create.cshtml",
+      "TargetPath": "Views\\Motel\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\_LayoutAuth.cshtml",
+      "TargetPath": "Views\\Shared\\_LayoutAuth.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\_MainMenu.cshtml",
+      "TargetPath": "Views\\Shared\\_MainMenu.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\_Header.cshtml",
+      "TargetPath": "Views\\Shared\\_Header.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Auth\\Login.cshtml",
+      "TargetPath": "Views\\Auth\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\_Footer.cshtml",
+      "TargetPath": "Views\\Shared\\_Footer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Motel\\Detail.cshtml",
+      "TargetPath": "Views\\Motel\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Code\\Fithou\\Web\\NganHangNhaTro\\Views\\Auth\\Register.cshtml",
+      "TargetPath": "Views\\Auth\\Register.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.3"
 }

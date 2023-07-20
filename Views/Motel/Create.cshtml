@@ -1,10 +1,8 @@
 ﻿@model NganHangNhaTro.Models.Views.MotelView
-@using Microsoft.AspNetCore.Http
+@using NganHangNhaTro.Enums
 
 @{
     ViewData["Title"] = "Create motel";
-    // Lấy thông tin người dùng từ session hoặc cookie
-    var userId = Context.Session.GetString("UserId");
 }
 
 <section id="multiple-column-form">
@@ -15,141 +13,100 @@
                     <h4 class="card-title">Thêm nhà trọ</h4>
                 </div>
                 <div class="card-body">
-                    @*<form class="form" method="POST" nctype="multipart/form-data" novalidate="novalidate" asp-controller="motel" asp-action="create">*@
-                    @using (Html.BeginForm("create", "motel", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {
-                        @Html.AntiForgeryToken();
+                    <form class="form" method="@FormMethod.Post" enctype="multipart/form-data" novalidate="novalidate" asp-controller="motel" asp-action="create">
+                        @* @using (Html.BeginForm("create", "motel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    { *@
+                        @* @Html.AntiForgeryToken() *@
+                        <p class="text-warning">@ViewBag.ErrorMessage</p>
                         <div class="row">
-                            @*Tiêu đề*@
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-4 col-12">
                                 <div class="mb-1">
-                                    <label for="title" class="form-label">Tiêu đề</label>
-                                    <input type="text" class="form-control" asp-for="title" placeholder="title" tabindex="1">
+                                    <label class="form-label" for="title-column">Title</label>
+                                    <input type="text" id="title-column" class="form-control" asp-for="title">
                                     <span asp-validation-for="title" class="text-danger"></span>
                                 </div>
                             </div>
-                            @*Địa chỉ*@
-                            <div class="col-md-6 col-12">
+                            <div class="col-md-4 col-12">
                                 <div class="mb-1">
-                                    <label for="description" class="form-label">Địa chỉ</label>
-                                    <input type="text" class="form-control" asp-for="address" placeholder="address" tabindex="1">
-                                    <span asp-validation-for="address" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @*Giá phòng*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label for="description" class="form-label">Giá</label>
-                                    <input type="text" class="form-control" asp-for="price" placeholder="price" tabindex="1">
-                                    <span asp-validation-for="price" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @*Ảnh*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label for="image" class="form-label">Ảnh</label>
-                                    <br />
-                                    <input type="text" class="form-control" asp-for="image" placeholder="image" tabindex="1" style="display:none;" value="anh">
-                                    <input type="file" class="form-control-file" asp-for="file">
-                                    <span asp-validation-for="file" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @*Chi tiết*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label for="detail" class="form-label">Chi tiết</label>
-                                    <input type="text" class="form-control" asp-for="detail" placeholder="detail" tabindex="1">
-                                    <span asp-validation-for="detail" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @*Id người tạo*@
-                            <div class="col-md-6 col-12" style="display:none;">
-                                <div class="mb-1">
-                                    <input type="text" name="created_by" value="@userId" />
-                                </div>
-                            </div>
-                            @*Giá điện nước*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label for="priceElectronicWater" class="form-label">Giá điện nước</label>
-                                    <input type="text" class="form-control" asp-for="priceElectronicWater" placeholder="priceElectronicWater" tabindex="1">
-                                    <span asp-validation-for="priceElectronicWater" class="text-danger"></span>
-                                </div>
-                            </div>
-                             @*Diện tích*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label for="acreage" class="form-label">Diện tích</label>
-                                    <input type="text" class="form-control" asp-for="acreage" placeholder="acreage" tabindex="1">
-                                    <span asp-validation-for="acreage" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @*Trạng thái*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label asp-for="status" class="form-label">Trạng thái</label>
-                                    <br/>
-                                    @*<input type="checkbox" class="form-control" asp-for="status" placeholder="status" tabindex="1">*@
-
-                                    <div class="radio">
-                                        <label>
-                                            <input asp-for="status" type="radio" value="True" checked> 
-                                            Còn phòng
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input asp-for="status" type="radio" id="False" value="False">
-                                            Hết phòng
-                                         </label>
-                                    </div>
-
-                                    @*<div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="status" name="inlineRadioOptions" id="inlineRadio1" value="True" checked />
-                                        <label class="form-check-label" asp-for="status">Còn phòng</label>
-                                    </div>
-
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" asp-for="status" name="inlineRadioOptions" id="inlineRadio1" value="False" />
-                                        <label class="form-check-label" asp-for="status">Hết phòng</label>
-                                    </div>*@
-                                </div>
-                            </div>
-                            @*Thời gian đăng bài*@
-                            <div class="col-md-6 col-12">
-                                <div class="mb-1">
-                                    <label for="post" class="form-label">Thời gian đăng bài</label>
-                                    <input type="datetime-local" class="form-control" asp-for="post" placeholder="post" tabindex="1">
-                                    <span asp-validation-for="post" class="text-danger"></span>
-                                </div>
-                            </div>
-                            @*Mô tả*@
-                            <div class="col-md-12 col-12">
-                                <div class="mb-1">
-                                    <label for="description" class="form-label">Mô tả</label>
-                                    @*<input type="text" class="form-control" asp-for="description" placeholder="description" tabindex="1">*@
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="description" asp-for="description"></textarea>
+                                    <label class="form-label" for="description-column">Description</label>
+                                    <input type="text" id="description-column" class="form-control" asp-for="description">
                                     <span asp-validation-for="description" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-primary me-1 waves-effect waves-float waves-light">Tạo phòng</button>
-                                @*<button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>*@
+                            <div class="col-md-4 col-12">
+                                <div class="mb-1">
+                                    <label for="status-column" class="form-label">Basic Select</label>
+                                    <select class="form-select" id="status-column" asp-for="status">
+                                        <option value="True">Còn phòng</option>
+                                        <option value="False">Hết phòng</option>
+                                    </select>
+                                    <span asp-validation-for="status" class="text-danger"></span>
+                                </div>
                             </div>
-                        </div>
-                    }
-                    
-                    @*</form>*@
+                            <div class="col-md-4 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="address-column">Address</label>
+                                    <input type="text" id="address-column" class="form-control" asp-for="address">
+                                    <span asp-validation-for="address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="price-column">Price</label>
+                                    <input type="number" id="price-column" class="form-control" asp-for="price">
+                                    <span asp-validation-for="price" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="image-column">Image</label>
+                                    <input type="file" id="image-column" class="form-control" asp-for="image">
+                                    <span asp-validation-for="image" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="detail-column">Detail</label>
+                                    <textarea class="form-control" id="detail-column" asp-for="detail" rows="7"></textarea>
+                                    <span asp-validation-for="detail" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" onclick="submitForm()" class="btn btn-primary me-1 waves-effect waves-float waves-light">Submit</button>
+                                <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
+                            </div>
+                            @* } *@
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group">
-                @Html.Raw(@ViewBag.Alert)
-            </div>
-        </div>
-    </div>
 </section>
+
+@section Scripts {
+    <script type="text/javascript">
+        function submitForm() {
+            var form = document.querySelector('.form');
+            var formData = new FormData(form);
+
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                @* if() *@
+                if (xmlHttp.readyState === 4) {
+                if (xmlHttp.status === 200) {
+                    // Request succeeded
+                    console.log(xmlHttp.response);
+                    console.log(xmlHttp.responseText);
+                } else {
+                    // Request failed
+                    console.error('Error: ' + xmlHttp.statusText);
+                }
+                }
+            };
+
+            xmlHttp.open('POST', form.action, true);
+            xmlHttp.send(formData);
+        }
+    </script>
+}

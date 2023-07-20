@@ -16,14 +16,16 @@
         {
             <div class="card ecommerce-card">
                 <div class="item-img text-center">
-                    <a asp-controller="Motel" asp-action="Detail" asp-route-id="@motel.id" class="motel-link">
+                    <a asp-controller="motel" asp-action="detail" asp-route-id="@motel.id" class="motel-link">
                         <img src="@motel.image" class="img-fluid motel-img" alt="img-placeholder">
                     </a>
                 </div>
                 <div class="card-body">
                     <div class="item-wrapper">
                         <div class="item-rating">
-                            <ul class="unstyled-list list-inline"></ul>
+                            <ul class="unstyled-list list-inline">
+                                @motel.address
+                            </ul>
                         </div>
                         <div class="item-cost">
                             <h6 class="item-price">@motel.price đ</h6>
@@ -33,7 +35,7 @@
                         <a href="app-ecommerce-details.html">@motel.title</a>
                     </div>
                     <p class="card-text item-description">
-                        Địa chỉ: @motel.address
+                        @motel.description
                     </p>
                 </div>
             </div>
@@ -70,7 +72,7 @@
                 in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
             </p>
         </div>
-    </div>  
+    </div>
 
     <div class="card ecommerce-card">
         <div class="item-img text-center">

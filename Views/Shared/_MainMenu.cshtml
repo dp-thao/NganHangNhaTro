@@ -7,8 +7,10 @@
         new MenuItemView { Controller = "motel", Action = "create", Text = "Create Motel" },
     };
 
+    List<string> listIfLogin = new List<string> { "Motel", "Create Motel" };
     var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
     var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+    string username = Context.Session.GetString("username");
 }
 <div class="horizontal-menu-wrapper">
     <div class="header-navbar navbar-expand-sm navbar navbar-horizontal floating-nav navbar-light navbar-shadow menu-border" role="navigation" data-menu="menu-wrapper" data-menu-type="floating-nav">
@@ -49,12 +51,15 @@
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 @foreach (var menuItem in menuItems)
                 {
-                    <li class='nav-item @(currentController == menuItem.Controller && currentAction == menuItem.Action ? "sidebar-group-active active open" : "")'>
-                        <a href="@Url.Action(menuItem.Action, menuItem.Controller)" class="nav-link d-flex align-items-center">
-                            <i data-feather="home"></i>
-                            <span data-i18n="@menuItem.Controller">@menuItem.Text</span>
-                        </a>
-                    </li>
+                    if (!string.IsNullOrEmpty(username) || !listIfLogin.Contains(menuItem.Text))
+                    {
+                        <li class='nav-item @(currentController == menuItem.Controller && currentAction == menuItem.Action ? "sidebar-group-active active open" : "")'>
+                            <a href="@Url.Action(menuItem.Action, menuItem.Controller)" class="nav-link d-flex align-items-center">
+                                <i data-feather="home"></i>
+                                <span data-i18n="@menuItem.Controller">@menuItem.Text</span>
+                            </a>
+                        </li>
+                    }
                 }
             </ul>
         </div>

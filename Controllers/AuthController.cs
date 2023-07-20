@@ -36,8 +36,8 @@ namespace NganHangNhaTro.Controllers
                     if (user != null)
                     {
                         // Lưu thông tin người dùng vào session hoặc cookie
-                        HttpContext.Session.SetString("UserId", user.id.ToString());
-                        HttpContext.Session.SetString("UserName", user.username);
+                        HttpContext.Session.SetString("uid", user.id.ToString());
+                        HttpContext.Session.SetString("username", user.username);
                         return RedirectToAction("index", "home");
                     }
                     else
@@ -86,6 +86,7 @@ namespace NganHangNhaTro.Controllers
 
         public IActionResult Logout()
         {
+            HttpContext.Session.Clear();
             return RedirectToAction("login", name);
         }
     }

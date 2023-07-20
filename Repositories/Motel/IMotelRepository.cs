@@ -13,12 +13,17 @@ namespace NganHangNhaTro.Repositories
         // public void SaveChanges();
         // Add other member-related methods as needed
 
-        public List<Motel> GetMotelList();
+        public List<Motel> getAll();
+
+        public List<Motel> getAllWithCreatedBy(int created_by);
+
+        public Motel show(int id);
+
         // Thêm phòng trọ mới
-        public Motel NewMotel(MotelView motelView);
+        public Motel add(Motel motel);
         // Cập nhật thông tin phòng trọ
-        public MotelView EditMotel(int Id);
+        public Motel save(Motel motel);
         // Xóa phòng trọ
-        public void DeleteMotel(int Id);
+        public void destroy(int id);
     }
 }

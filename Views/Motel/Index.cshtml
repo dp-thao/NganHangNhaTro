@@ -5,6 +5,8 @@
     // Lấy thông tin người dùng từ session hoặc cookie
     var userId = Context.Session.GetString("UserId");
     var userName = Context.Session.GetString("UserName");
+
+    string modal = "motel";
 }
 @section Styles {
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/pages/app-ecommerce.css">
@@ -40,39 +42,36 @@
                             int stt = 0;
                             @for (var i = 0; i < Model.Count; i++)
                             {
-                                @if (@Model[i].created_by == Int32.Parse(userId))
-                                {
-                                    stt++;
-                                    <tr>
-                                        <td>@(stt)</td>
-                                        <td>@Model[i].title</td>
-                                        <td class="td-img-index">
-                                            <img class="me-75 img-index" src="@Model[i].image" alt="Angular" />
-                                        </td>
-                                        <td>@Model[i].address</td>
-                                        <td>18/07/2023 15:31:36</td>
-                                        <td>
-                                            @if (@Model[i].status == true)
-                                            {
-                                                <span class="badge rounded-pill badge-light-primary me-1">Còn phòng</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="badge rounded-pill badge-light-primary me-1">Hết phòng</span>
-                                            }
-                                        </td>
-                                        <td>
-                                            @Model[i].price
-                                        </td>
-                                        <td class="td-option-index">
-                                            <div class="demo-inline-spacing">
-                                                <a type="button" class="btn btn-flat-info" asp-controller="Motel" asp-action="Detail" asp-route-id="@Model[i].id">Review</a>
-                                                <a type="button" class="btn btn-flat-warning" asp-controller="Motel" asp-action="Edit" asp-route-id="@Model[i].id" id="btn-edit">Sửa</a>
-                                                <a type="button" class="btn btn-flat-danger" asp-controller="Motel" asp-action="Delete" asp-route-id="@Model[i].id">Xóa</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
+                                stt++;
+                                <tr>
+                                    <td>@(stt)</td>
+                                    <td>@Model[i].title</td>
+                                    <td class="td-img-index">
+                                        <img class="me-75 img-index" src="@Model[i].image" alt="Angular" />
+                                    </td>
+                                    <td>@Model[i].address</td>
+                                    <td>18/07/2023 15:31:36</td>
+                                    <td>
+                                        @if (@Model[i].status == true)
+                                        {
+                                            <span class="badge rounded-pill badge-light-primary me-1">Còn phòng</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge rounded-pill badge-light-primary me-1">Hết phòng</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @Model[i].price VNĐ
+                                    </td>
+                                    <td class="td-option-index">
+                                        <div class="demo-inline-spacing">
+                                            <a type="button" class="btn btn-flat-info" asp-controller="@modal" asp-action="detail" asp-route-id="@Model[i].id">Review</a>
+                                            <a type="button" class="btn btn-flat-warning" asp-controller="@modal" asp-action="edit" asp-route-id="@Model[i].id" id="btn-edit">Sửa</a>
+                                            <a type="button" class="btn btn-flat-danger" asp-controller="@modal" asp-action="delete" asp-route-id="@Model[i].id">Xóa</a>
+                                        </div>
+                                    </td>
+                                </tr>
                             }
                             @*@foreach (var motel in Model)
                             {
@@ -161,15 +160,12 @@
         <p>Không tìm thấy motel nào.</p>
     }
 
-    
+
 </section>*@
 
 @section Scripts {
     <script src="~/app-assets/js/scripts/pages/app-ecommerce-wishlist.js"></script>
     <script type="text/javascript">
-        function addClassAppContent(className){
-            $("#app-content").addClass(className);
-        }
         $(document).ready(async function(){
             addClassAppContent("ecommerce-application");
         })
