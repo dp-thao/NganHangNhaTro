@@ -1,4 +1,8 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System;
 
 namespace NganHangNhaTro.Models.Views
 {
@@ -7,7 +11,7 @@ namespace NganHangNhaTro.Models.Views
         [Key]
         public int id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Tài khoản không được bỏ trống")]
         public string title { get; set; }
 
         [Required]
@@ -22,10 +26,29 @@ namespace NganHangNhaTro.Models.Views
         [Required]
         public string price { get; set; }
 
-        [Required]
+        //[Required]
         public string image { get; set; }
 
         [Required]
-        public string created_by { get; set; }
+        public int created_by { get; set; }
+
+        [Required]
+        public IFormFile file { get; set; }
+
+        // Giá điện nước
+        [Required]
+        public string priceElectronicWater { get; set; }
+
+        // Diện tích
+        [Required]
+        public int acreage { get; set; }
+
+        // Trạng thái
+        [Required]
+        public bool status { get; set; }
+
+        // Ngày đăng
+        [Required]
+        public DateTime post { get; set; }
     }
 }

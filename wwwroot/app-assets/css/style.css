@@ -1,0 +1,63 @@
+/* =============================
+    Motel - Index
+==============================*/
+.motel-link {
+    width: 100%;
+}
+
+.motel-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    padding: 0 7px;
+}
+
+.td-img-index {
+    width: 25%;
+}
+
+.td-option-index {
+    width: 10%;
+}
+
+.img-index {
+    width: 100%;
+    height: 200px;
+    min-height: auto;
+    object-fit: cover;
+}
+/* =============================
+    Motel - Detail
+==============================*/
+.cart-wrap-img {
+    width: 100%;
+    height: 500px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-img-motel {
+    width: 50%;
+    height: auto;
+    max-height: 80%;
+    object-fit: cover;
+    border-bottom-left-radius: 0.428rem;
+    border-bottom-right-radius: 0.428rem;
+}
+/* =============================
+    Motel - Edit
+==============================*/
+.img-edit {
+    width: 50%;
+    height: 250px;
+    min-height: auto;
+    object-fit: cover;
+    display: block;
+    border: 1px solid #ccc;
+    padding: 6px;
+    border-radius: 5px;
+    margin-top: 16px;
+    margin-bottom: 30px;
+}

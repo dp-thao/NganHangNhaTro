@@ -5,6 +5,7 @@ using NganHangNhaTro.Models.Views;
 using Microsoft.AspNetCore.Authorization;
 using NganHangNhaTro.Repositories;
 using NganHangNhaTro.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace NganHangNhaTro.Controllers
 {
@@ -34,6 +35,9 @@ namespace NganHangNhaTro.Controllers
                     User user = _userRepository.getByUsernameAndPassword(login);
                     if (user != null)
                     {
+                        // Lưu thông tin người dùng vào session hoặc cookie
+                        HttpContext.Session.SetString("UserId", user.id.ToString());
+                        HttpContext.Session.SetString("UserName", user.username);
                         return RedirectToAction("index", "home");
                     }
                     else
@@ -43,6 +47,7 @@ namespace NganHangNhaTro.Controllers
                 }
                 catch (Exception e)
                 {
+                    Console.WriteLine(e.Message);
                     throw e;
                 }
             }

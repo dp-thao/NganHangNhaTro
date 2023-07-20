@@ -1,0 +1,90 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model NganHangNhaTro.Models.Views.MotelView
+@using Microsoft.AspNetCore.Http
+
+@{
+    // Lấy thông tin người dùng từ session hoặc cookie
+    var userId = Context.Session.GetString("UserId");
+}
+
+<section id="multiple-column-form">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Sửa phòng trọ</h4>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("EditMotel", "Motel", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken();
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label for="title" class="form-label">Tiêu đề</label>
+                                    <input type="text" class="form-control" asp-for="title" placeholder="title" tabindex="1" value="@Model.title">
+                                    <span asp-validation-for="title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label for="description" class="form-label">Mô tả</label>
+                                    <input type="text" class="form-control" asp-for="description" placeholder="description" tabindex="1" value="@Model.description">
+                                    <span asp-validation-for="description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label for="description" class="form-label">Địa chỉ</label>
+                                    <input type="text" class="form-control" asp-for="address" placeholder="address" tabindex="1" value="@Model.address">
+                                    <span asp-validation-for="address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label for="description" class="form-label">Giá</label>
+                                    <input type="text" class="form-control" asp-for="price" placeholder="price" tabindex="1" value="@Model.price">
+                                    <span asp-validation-for="price" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label for="image" class="form-label">Ảnh</label>
+                                    <input type="file" class="form-control-file" asp-for="file" value="@Model.file">
+                                    <span asp-validation-for="file" class="text-danger"></span>
+                                    <img class="img-edit" src="@Model.image">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="mb-1">
+                                    <label for="detail" class="form-label">Chi tiết</label>
+                                    <input type="text" class="form-control" asp-for="detail" placeholder="detail" tabindex="1" value="@Model.detail">
+                                    <span asp-validation-for="detail" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12" style="display:none;">
+                                <div class="mb-1">
+                                    <input type="text" name="created_by" value="@userId" />
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary me-1 waves-effect waves-float waves-light" id="btn-edit-save">Lưu</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                @Html.Raw(@ViewBag.Alert)
+            </div>
+        </div>
+    </div>
+</section>

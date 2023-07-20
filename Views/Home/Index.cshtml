@@ -6,8 +6,45 @@
     <link rel="stylesheet" type="text/css" href="~/app-assets/css/plugins/extensions/ext-component-toastr.css">
 }
 
+@model List<Motel>;
+
 <section id="wishlist" class="grid-view wishlist-items">
-    <div class="card ecommerce-card">
+
+    @if (Model != null && Model.Count > 0)
+    {
+        @foreach (var motel in Model)
+        {
+            <div class="card ecommerce-card">
+                <div class="item-img text-center">
+                    <a asp-controller="Motel" asp-action="Detail" asp-route-id="@motel.id" class="motel-link">
+                        <img src="@motel.image" class="img-fluid motel-img" alt="img-placeholder">
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="item-wrapper">
+                        <div class="item-rating">
+                            <ul class="unstyled-list list-inline"></ul>
+                        </div>
+                        <div class="item-cost">
+                            <h6 class="item-price">@motel.price đ</h6>
+                        </div>
+                    </div>
+                    <div class="item-name">
+                        <a href="app-ecommerce-details.html">@motel.title</a>
+                    </div>
+                    <p class="card-text item-description">
+                        Địa chỉ: @motel.address
+                    </p>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Không tìm thấy motel nào.</p>
+    }
+
+    @*<div class="card ecommerce-card">
         <div class="item-img text-center">
             <a href="app-ecommerce-details.html">
                 <img src="~/app-assets/images/pages/eCommerce/1.png" class="img-fluid" alt="img-placeholder">
@@ -33,7 +70,7 @@
                 in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
             </p>
         </div>
-    </div>
+    </div>  
 
     <div class="card ecommerce-card">
         <div class="item-img text-center">
@@ -89,17 +126,17 @@
                 in a wider range of materials, including aluminium, stainless steel, ceramic and an all-new titanium.
             </p>
         </div>
-    </div>
+    </div>*@
 </section>
 <div class="row">
     <div class="col-12">
         <nav aria-label="Page navigation">
             <ul class="pagination mt-2 justify-content-center">
                 <li class="page-item prev"><a class="page-link" href="#"></a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item active" aria-current="page">
+                <li class="page-item">
                     <a class="page-link" href="#">4</a>
                 </li>
                 <li class="page-item"><a class="page-link" href="#">5</a></li>

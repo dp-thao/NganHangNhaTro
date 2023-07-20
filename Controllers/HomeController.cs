@@ -1,21 +1,27 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using NganHangNhaTro.Models;
+using NganHangNhaTro.Repositories;
 
 namespace NganHangNhaTro.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private IMotelRepository _motelRepository;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IMotelRepository motelRepository)
     {
-        _logger = logger;
+        _motelRepository = motelRepository;
     }
 
     public IActionResult Index()
     {
-        return View();
+        int pageSize = 10; // Số lượng mục hiển thị trên mỗi trang
+        int totalItems = _motelRepository.GetMotelList().Count; // Tổng số lượng mục
+
+
+        List<Motel> motels = _motelRepository.GetMotelList();
+        return View(motels);
     }
 
     public IActionResult Privacy()

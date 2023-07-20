@@ -1,6 +1,8 @@
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using NganHangNhaTro.Models;
 using NganHangNhaTro.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +15,19 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IMotelRepository, MotelRepository>();
 
-var app = builder.Build();
+// cấu hình phiên
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20); // Thời gian chờ phiên
+    options.Cookie.IsEssential = true; // Đảm bảo rằng cookie phiên được gửi đi ngay cả khi người dùng không chấp nhận cookie
+    options.Cookie.HttpOnly = true;
+});
+builder.Services.AddHttpContextAccessor();
 
+
+var app = builder.Build();
+// sử dụng phiên
+app.UseSession();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -32,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=home}/{action=index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

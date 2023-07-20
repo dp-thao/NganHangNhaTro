@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Motel
+@{
+	ViewData["Title"] = "Chi tiết phòng trọ";
+}
+
+<!-- Blog Detail -->
+<div class="blog-detail-wrapper">
+	<div class="row">
+		<!-- Blog -->
+		<div class="col-12">
+			<div class="card">
+				<!-- Ảnh -->
+				<div class="cart-wrap-img">
+					<img src="@Model.image" class="img-fluid card-img-top cart-img-motel" alt="Blog Detail Pic" />
+				</div>
+				<!-- Thông tin chi tiết -->
+				<div class="card-body">
+
+					<!-- Bordered table start -->
+					<div class="row" id="table-bordered">
+						<div class="col-12">
+							<div class="card">
+								<div class="table-responsive">
+									<table class="table table-bordered">
+										<tbody>
+											<tr>
+												<th>
+													<span class="fw-bold">Địa chỉ</span>
+												</th>
+												<td>@Model.address</td>
+												<th>
+													<span class="fw-bold">Chuyên mục</span>
+												</th>
+												<td>
+													<span class="badge rounded-pill badge-light-primary me-1">@Model.title</span>
+												</td>
+											</tr>
+											<tr>
+												<th>
+													<span class="fw-bold">Giá tiền</span>
+												</th>
+												<td>@Model.price</td>
+												<th>
+													<span class="fw-bold">Diện tích</span>
+												</th>
+												<td>@Model.acreage m2</td>
+											</tr>
+											<tr>
+												<th>
+													<span class="fw-bold">Giá điện nước</span>
+												</th>
+												<td>@Model.priceElectronicWater</td>
+												<th>
+													<span class="fw-bold">Điện thoại</span>
+												</th>
+												<td>0947441289</td>
+											</tr>
+											<tr>
+												<th>
+													<span class="fw-bold">Ngày đăng</span>
+												</th>
+												<td>@Model.post</td>
+												<th>
+													<span class="fw-bold">Trạng thái</span>
+												</th>
+												<td>
+													@if (Model.status == true)
+													{
+														<span class="badge rounded-pill badge-light-primary me-1">Còn phòng</span>
+													} else
+													{
+														<span class="badge rounded-pill badge-light-primary me-1">Hết phòng</span>
+													}
+
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Bordered table end -->
+
+					<h4 class="card-title">Mô tả</h4>
+					<p class="card-text mb-2">
+						@Model.description
+					</p>
+
+				</div>
+			</div>
+		</div>
+		<!--/ Blog -->
+	</div>
+</div>
+<!--/ Blog Detail -->
