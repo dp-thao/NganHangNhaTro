@@ -18,6 +18,7 @@ public class HomeController : Controller
     {
         // int pageSize = 10; // Số lượng mục hiển thị trên mỗi trang
         // int totalItems = _motelRepository.getAll(title).Count; // Tổng số lượng mục
+        //
         List<Motel> motels = _motelRepository.GetAll(title);
         return View(motels);
     }
