@@ -17,18 +17,34 @@ namespace NganHangNhaTro.Repositories
         }
 
         // Lấy toàn bộ danh sách phòng trọ
-        public List<Motel> getAll()
+        public List<Motel> GetAll(string title)
         {
-            return _dbContext.Motel.Include(motel => motel.user).ToList();
+            var data = _dbContext.Motel.Include(motel => motel.user)
+            .OrderByDescending(m => m.created_at)
+            .ToList();
+
+            if (!string.IsNullOrEmpty(title))
+            {
+                // Perform case-insensitive comparison
+                title = title.ToLower();
+                data = data.Where(m => m.title.ToLower().Contains(title)).ToList();
+            }
+
+            return data;
         }
 
         public List<Motel> getAllWithCreatedBy(int created_by)
         {
-            return _dbContext.Motel.Include(motel => motel.user).Where(motel => motel.created_by == created_by).ToList();
+            return _dbContext.Motel
+                .Include(motel => motel.user)
+                .Where(motel => motel.created_by == created_by)
+                .OrderByDescending(m => m.created_at)
+                .ToList();
         }
 
 
-        public Motel show(int id){
+        public Motel show(int id)
+        {
             return _dbContext.Motel.Include(motel => motel.user).FirstOrDefault(motel => motel.id == id);
         }
 
@@ -70,11 +86,9 @@ namespace NganHangNhaTro.Repositories
                 existingMotel.detail = motel.detail;
                 existingMotel.address = motel.address;
                 existingMotel.price = motel.price;
-                existingMotel.image = motel.image;
                 existingMotel.status = motel.status;
-                existingMotel.created_by = motel.created_by;
-                existingMotel.created_at = motel.created_at;
                 // ... Update created_at properties as needed ...
+                _dbContext.Motel.Update(existingMotel);
 
                 // Save the changes to the database
                 _dbContext.SaveChanges();

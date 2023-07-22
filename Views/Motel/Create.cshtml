@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Create motel";
+    string url = Url.Action("index", "motel");
 }
 
 <section id="multiple-column-form">
@@ -98,6 +99,9 @@
                     // Request succeeded
                     console.log(xmlHttp.response);
                     console.log(xmlHttp.responseText);
+                    let url = "@url"; // The URL from Razor
+                    // Use window.location to navigate to the URL
+                    window.location.href = url;
                 } else {
                     // Request failed
                     console.error('Error: ' + xmlHttp.statusText);

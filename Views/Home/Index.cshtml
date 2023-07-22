@@ -8,8 +8,17 @@
 
 @model List<Motel>;
 
+<div class="row">
+    <div class="col-12">
+    <form method="GET" asp-controller="home" asp-action="index">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="title" placeholder="Search by title">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+    </form>
+    </div>
+</div>
 <section id="wishlist" class="grid-view wishlist-items">
-
     @if (Model != null && Model.Count > 0)
     {
         @foreach (var motel in Model)
@@ -32,7 +41,7 @@
                         </div>
                     </div>
                     <div class="item-name">
-                        <a href="app-ecommerce-details.html">@motel.title</a>
+                        <a href="#">@motel.title</a>
                     </div>
                     <p class="card-text item-description">
                         @motel.description
@@ -130,7 +139,7 @@
         </div>
     </div>*@
 </section>
-<div class="row">
+@* <div class="row">
     <div class="col-12">
         <nav aria-label="Page navigation">
             <ul class="pagination mt-2 justify-content-center">
@@ -148,7 +157,7 @@
             </ul>
         </nav>
     </div>
-</div>
+</div> *@
 @section Scripts {
     <script src="~/app-assets/js/scripts/pages/app-ecommerce-wishlist.js"></script>
     <script type="text/javascript">

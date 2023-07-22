@@ -44,7 +44,7 @@ namespace NganHangNhaTro.Services
                 return $"/{folderName}/{fileName}";
             }
 
-            return "";
+            return null;
         }
 
         // public async Task<DeletionResult> deletePhotoAsync(string publicUrl)

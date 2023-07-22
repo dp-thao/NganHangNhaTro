@@ -14,13 +14,11 @@ public class HomeController : Controller
         _motelRepository = motelRepository;
     }
 
-    public IActionResult Index()
+    public IActionResult Index(string title)
     {
-        int pageSize = 10; // Số lượng mục hiển thị trên mỗi trang
-        int totalItems = _motelRepository.getAll().Count; // Tổng số lượng mục
-
-
-        List<Motel> motels = _motelRepository.getAll();
+        // int pageSize = 10; // Số lượng mục hiển thị trên mỗi trang
+        // int totalItems = _motelRepository.getAll(title).Count; // Tổng số lượng mục
+        List<Motel> motels = _motelRepository.GetAll(title);
         return View(motels);
     }
 

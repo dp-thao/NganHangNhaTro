@@ -13,7 +13,7 @@ namespace NganHangNhaTro.Repositories
         // public void SaveChanges();
         // Add other member-related methods as needed
 
-        public List<Motel> getAll();
+        public List<Motel> GetAll(string title);
 
         public List<Motel> getAllWithCreatedBy(int created_by);
 

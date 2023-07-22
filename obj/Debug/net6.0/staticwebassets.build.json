@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3KExff5sGKpdqMqTiytFoeHGtVIUB2LZP3nyhKO/vYk=",
+  "Hash": "sLphzGMU+MNJI07FzO/0Jh/fXQwasP+rL8dlF1ENHcQ=",
   "Source": "NganHangNhaTro",
   "BasePath": "_content/NganHangNhaTro",
   "Mode": "Default",
@@ -30736,6 +30736,23 @@
       "OriginalItemSpec": "wwwroot\\images\\47cbae4f-e8cb-4d73-b8d9-9ab352ab0ac5-1.png"
     },
     {
+      "Identity": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\images\\4ccc8c55-78e6-4f1c-9ce1-b7880783dd17-1.png",
+      "SourceId": "NganHangNhaTro",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\",
+      "BasePath": "_content/NganHangNhaTro",
+      "RelativePath": "images/4ccc8c55-78e6-4f1c-9ce1-b7880783dd17-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\4ccc8c55-78e6-4f1c-9ce1-b7880783dd17-1.png"
+    },
+    {
       "Identity": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\images\\558f035e-fde7-4250-83c6-57c886167efd-BHYT.jpg",
       "SourceId": "NganHangNhaTro",
       "SourceType": "Discovered",
@@ -30887,6 +30904,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\c22c6ace-a702-4a36-8176-1ad632e52680-VTI.jpg"
+    },
+    {
+      "Identity": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\images\\cb1be077-9ae2-4cba-81a4-3b8d72a2a4dc-1.png",
+      "SourceId": "NganHangNhaTro",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\",
+      "BasePath": "_content/NganHangNhaTro",
+      "RelativePath": "images/cb1be077-9ae2-4cba-81a4-3b8d72a2a4dc-1.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cb1be077-9ae2-4cba-81a4-3b8d72a2a4dc-1.png"
     },
     {
       "Identity": "D:\\Code\\Fithou\\Web\\NganHangNhaTro\\wwwroot\\images\\d2f82f26-bc2f-498e-a4ed-6ac0f00419ac-1.png",

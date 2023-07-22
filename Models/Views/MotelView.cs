@@ -25,13 +25,10 @@ namespace NganHangNhaTro.Models.Views
         [Required]
         public string price { get; set; }
 
-        [Required]
         public IFormFile image { get; set; }
 
         // Trạng thái
         [Required]
         public bool status { get; set; }
-
-        public int created_by { get; set; }
     }
 }

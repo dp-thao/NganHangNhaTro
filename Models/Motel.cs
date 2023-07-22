@@ -11,6 +11,7 @@ namespace NganHangNhaTro.Models
         public int id { get; set; }
 
         // Tiêu đề
+        [Required(ErrorMessage = "Tiêu đề không được bỏ trống")]
         public string title { get; set; }
 
         // Mô tả

@@ -57,10 +57,15 @@ namespace NganHangNhaTro.Controllers
                 }
                 else
                 {
+                    if (motelView.image == null)
+                    {
+                        ViewBag.ErrorMessage = "Photo upload empty";
+                        return View("create");
+                    }
                     // Lưu ảnh vào thư mục
                     string imagePath = await _photoService.add(motelView.image);
 
-                    if (imagePath == "")
+                    if (string.IsNullOrEmpty(imagePath))
                     {
                         ViewBag.ErrorMessage = "Photo upload empty";
                     }
@@ -87,48 +92,52 @@ namespace NganHangNhaTro.Controllers
                         errors = new List<dynamic>(),
                     });
                 }
-                return View("Create");
+                return View("create");
 
             }
             catch (Exception e)
             {
                 ViewBag.ErrorMessage = e.Message;
-                return View("Create");
+                return View("create");
             }
         }
 
-        [HttpGet]
-        public IActionResult Update(int id)
+        public IActionResult Edit(int id)
         {
             Motel motel = _motelRepository.show(id);
+            if (motel == null)
+            {
+                return NotFound();
+            }
             return View(motel);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(MotelView motelView)
+        public async Task<IActionResult> Edit(int id, Motel motel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                Motel motel = new Motel
-                {
-                    title = motelView.title,
-                    description = motelView.description,
-                    detail = motelView.detail,
-                    address = motelView.address,
-                    price = motelView.price,
-                    status = motelView.status,
-                };
-                _motelRepository.save(motel);
-                return RedirectToAction("Index");
+                var updated = _motelRepository.save(motel);
 
+                if (updated != null)
+                {
+                    return RedirectToAction("index");
+                }
+
+                ViewBag.ErrorMessage = "Có lỗi xảy ra, vui lòng thử lại";
             }
-            return View();
+            catch (Exception e)
+            {
+                ViewBag.ErrorMessage = e.Message;
+                return View(motel);
+            }
+            return View(motel);
         }
 
         public IActionResult Delete(int id)
         {
             _motelRepository.destroy(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("index");
         }
 
     }
